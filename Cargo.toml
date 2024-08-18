@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 sha256 = { version = "1.5.0", default-features = false }
+termsize = "0.1"
