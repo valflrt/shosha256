@@ -1,6 +1,8 @@
 [package]
 name = "shosha256"
+description = "A sha256 previewer I made just for fun..."
 version = "0.1.0"
+license = "MIT"
 edition = "2021"
 
 [dependencies]
