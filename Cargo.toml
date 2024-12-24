@@ -1,11 +1,14 @@
 [package]
 name = "shosha256"
 description = "A sha256 previewer I made just for fun..."
-version = "0.1.1"
+version = "0.2.0"
 license = "MIT"
 edition = "2021"
 
 [dependencies]
-atty = "0.2.14"
+colored = "2.2.0"
 sha256 = { version = "1.5.0", default-features = false }
 termsize = "0.1"
+
+[features]
+no-color = ["colored/no-color"]
