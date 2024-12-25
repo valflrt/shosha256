@@ -17,10 +17,9 @@ const CHARS: [char; 16] = [
     '─', '│', '╭', '╮', '╯', '╰', '┼', '╴', '╵', '╶', '╷', '├', '┤', '┬', '┴', ' ',
 ];
 
-const COMMANDS: [&str; 5] = [
+const COMMANDS: [&str; 4] = [
     "  string [str]                     preview sha256 hash of a string",
     "  file [path]                      preview sha256 hash of a file",
-    "  compare_strings [str1] [str2]    compare sha256 hashes of two strings",
     "  compare_files [path1] [path2]    compare sha256 hashes of two files",
     "  check_file [path] [hash]         check sha256 of a file against given hash",
 ];
@@ -83,19 +82,6 @@ fn main() -> Result<(), Error> {
 
                 print_pattern(&hash);
             }
-            "compare_strings" => {
-                if args.len() > 4 {
-                    return Err(Error::TooManyArguments);
-                }
-
-                let string1 = args.get(2).ok_or(Error::MissingArgument)?;
-                let string2 = args.get(3).ok_or(Error::MissingArgument)?;
-
-                let hash1 = compute_sha256(string1.as_bytes()).map_err(Error::ComputeSha256)?;
-                let hash2 = compute_sha256(string2.as_bytes()).map_err(Error::ComputeSha256)?;
-
-                compare_patterns(&hash1, &hash2);
-            }
             "compare_files" => {
                 if args.len() > 4 {
                     return Err(Error::TooManyArguments);
@@ -126,12 +112,12 @@ fn main() -> Result<(), Error> {
                 compare_patterns(&hash1, &hash2);
             }
             _ => {
-                println!("Unknown command. Available commands are:");
+                println!("\nUnknown command. Available commands are:");
                 println!("{}", COMMANDS.join("\n"));
             }
         }
     } else {
-        println!("shosha256: a sha256 previewer.\n");
+        println!("\nshosha256: a sha256 previewer\n");
         println!("Usage:");
         println!("  command [command] [arguments]\n");
         println!("Available commands:");
