@@ -1,7 +1,9 @@
 [package]
 name = "shosha256"
 description = "A sha256 previewer I made just for fun..."
-version = "0.2.2"
+version = "0.2.3"
+authors = ["valflrt"]
+repository = "https://github.com/valflrt/shosha256"
 license = "MIT"
 edition = "2021"
 

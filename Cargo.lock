@@ -97,7 +97,7 @@ dependencies = [
 
 [[package]]
 name = "shosha256"
-version = "0.2.2"
+version = "0.2.3"
 dependencies = [
  "colored",
  "hex",

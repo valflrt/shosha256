@@ -168,6 +168,8 @@ fn compare_patterns(hash1: &[u8], hash2: &[u8]) {
         .map(|size: Size| (size.cols as usize - 2 * PATTERN_WIDTH - 2) / 2)
         .unwrap_or(2);
 
+    let hash_match = hash1 == hash2;
+
     let pattern1 = create_pattern(&hash1);
     let pattern2 = create_pattern(&hash2);
 
@@ -179,10 +181,12 @@ fn compare_patterns(hash1: &[u8], hash2: &[u8]) {
             let c2 = CHARS[*pattern2.get((i, j))];
             print!(
                 "{}",
-                if c1 == c2 {
+                if hash_match {
                     c1.to_string().green()
-                } else {
+                } else if c1 != c2 {
                     c1.to_string().red()
+                } else {
+                    c1.to_string().normal()
                 }
             );
         }
@@ -192,10 +196,12 @@ fn compare_patterns(hash1: &[u8], hash2: &[u8]) {
             let c2 = CHARS[*pattern2.get((i, j))];
             print!(
                 "{}",
-                if c1 == c2 {
+                if hash_match {
                     c2.to_string().green()
-                } else {
+                } else if c1 != c2 {
                     c2.to_string().red()
+                } else {
+                    c2.to_string().normal()
                 }
             );
         }
